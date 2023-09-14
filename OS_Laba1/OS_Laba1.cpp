@@ -31,25 +31,25 @@ void main()
 
     // Виндавс дайрэктория
     GetWindowsDirectory(infoBuf, INFO_BUFFER_SIZE);
-    _tprintf(TEXT("\nWindows Directory:  %s\n"), infoBuf);
+    _tprintf(TEXT("\nWindows Directory:  %s"), infoBuf);
 
     // Дайрэктория временных
     GetTempPath(INFO_BUFFER_SIZE, infoBuf);
-    _tprintf(TEXT("\Temp Path Directory:  %s\n\n"), infoBuf);
+    _tprintf(TEXT("\nTemp Path Directory:  %s\n"), infoBuf);
 
 
     //Версия операционной системы 
     OSVERSIONINFO osversion;
     memset(&osversion, 0, sizeof(OSVERSIONINFO));
     osversion.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-    if (!IsWindows10OrGreater()) { std::cout << "Windows 10/11" << std::endl; }
-    else { std::cout << "Not win 10" << std::endl; }
+    if (!IsWindows10OrGreater()) { std::cout << "OS Version: Windows 10/11\n" << std::endl; }
+    else { std::cout << "OS Version: Not win 10" << std::endl; }
 
 
     //// Систэмнэй мэтрик
     // Колво моников
     int monitorNumbers = GetSystemMetrics(SM_CMONITORS);
-    std::cout << "\System Metrics: \nMonitor numbers: " << monitorNumbers << "\n";
+    std::cout << "\tSystem Metrics: \nMonitor numbers: " << monitorNumbers << "\n";
     // Ширина экрана основного монитора отображения, в пикселях. 
     int screenWidth = GetSystemMetrics(SM_CXSCREEN);
     std::cout << "Screen width: " << screenWidth << "\n";
@@ -61,21 +61,36 @@ void main()
     // Скорость мышки
     unsigned int aMouseInfo;
     SystemParametersInfo(SPI_GETMOUSESPEED, 0, &aMouseInfo, 0);
-    std::cout << "\n\System Parametrs: \nMouse speed: " << aMouseInfo;
+    std::cout << "\n\tSystem Parametrs: \nMouse speed: " << aMouseInfo;
 
     // Размер курсора
     int cursorWidth = 0;
     int cursorHeight = 0;
 
-    SystemParametersInfo(SPI_GETMOUSE, 0, &cursorWidth, 0);
+    SystemParametersInfo(SPI_GETMOUSE, 0, &cursorWidth, SPIF_SENDCHANGE);
     SystemParametersInfo(SPI_GETMOUSE, 0, &cursorHeight, SPIF_SENDCHANGE);
     std::cout << "\nMouse cursor size:" << std::endl;
     std::cout << "Width: " << cursorWidth << " pixels" << std::endl;
     std::cout << "Height: " << cursorHeight << " pixels" << std::endl;
 
-    // Системные цвета
+    //// Системные цвета
+    // GetSysColors - для получения системных цветов
+    // SetSysColors - для изменения системных цветов
 
+    COLORREF colorWindow = GetSysColor(COLOR_WINDOW);
+    int redWindow = GetRValue(colorWindow);
+    int greenWindow = GetGValue(colorWindow);
+    int blueWindow = GetBValue(colorWindow);
+    std::cout << "System color window RGB:" << "("<< redWindow << ", " << greenWindow << ", " << blueWindow << ")" << std::endl;
 
+    int n[] = { COLOR_3DDKSHADOW, COLOR_3DDKSHADOW };
+    COLORREF color = GetSysColor(n[0]);//Темная тень для элементов трехмерного отображения.
+    COLORREF color2 = GetSysColor(n[1]);//Рабочий стол.
+    unsigned long p[] = { color, color2 };
+    COLORREF newcolor[] = { RGB(150, 75, 0), RGB(0, 0, 255) };//Коричневыq и Синий
+    SetSysColors(2, n, newcolor);
+    Sleep(10000);
+    SetSysColors(2, n, p);
 
 
     //Функции для работы со временем:
@@ -83,7 +98,7 @@ void main()
     GetLocalTime(&var1);
     GetSystemTime(&var2);
 
-    std::cout << "\nTime information:\nLocal Time: date " << var1.wDay << "." << var1.wMonth << "." << var1.wYear << " time " << var1.wHour << ":" << var1.wMinute
+    std::cout << "\n\tTime information:\nLocal Time: date " << var1.wDay << "." << var1.wMonth << "." << var1.wYear << " time " << var1.wHour << ":" << var1.wMinute
 
         << "\nSystem time: "
 
@@ -91,7 +106,7 @@ void main()
 
     // Индивидуальные такси
     // GetClipCursor, GetKeyboardType, GetUserDefaultLCID, ShowCursor
-    std::cout << "\n Individual task. Option #13";
+    std::cout << "\n\tIndividual task. Option #13";
 
     // Извлекает экранные координаты прямоугольной области, которой ограничен курсор.
     RECT mem;
