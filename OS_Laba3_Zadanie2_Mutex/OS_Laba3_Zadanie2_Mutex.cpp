@@ -1,63 +1,39 @@
-﻿#include <Windows.h>
-#include <iostream>
+﻿#include <iostream>
+#include <fstream>
+#include <mutex>
 #include <thread>
 
-// Глобальные переменные
-int accountBalance = 0;
-HANDLE mutex;
+// Создаем мьютекс для синхронизации доступа к файлу
+std::mutex file_mutex;
 
+// Функция для записи в файл с использованием мьютекса
+void write_to_file(const std::string& filename, const std::string& data) {
+    std::lock_guard<std::mutex> lock(file_mutex);
+    std::cout << std::this_thread::get_id() << " writes to a file '" << filename << "'" << std::endl;
 
-/* 
-Функция блокирует мьютекс с помощью WaitForSingleObject перед выполнением операции.
-WaitForSingleObject(mutex, INFINITE); блокирует поток, который ее вызывает, до тех пор, пока мьютекс (mutex) не будет доступен. 
-Он может ждать бесконечно долго, пока не получит сигнал о том, что мьютекс доступен и его можно использовать.
-*/
-
-void PerformTransaction(int amount, const char* action) {
-    WaitForSingleObject(mutex, INFINITE);
-
-    // Имитация времени выполнения операции
-    Sleep(100);
-
-    accountBalance += amount;
-    setlocale(LC_ALL, "rus");
-    std::cout << "Выполненная операция: " << action << ". Новый баланс: " << accountBalance << std::endl;
-
-    ReleaseMutex(mutex);
-}
-
-
-// Функции потоков для депозита и снятия средств:
-void DepositThread() {
-    for (int i = 0; i < 5; ++i) {
-        int depositAmount = rand() % 100 + 1;
-        PerformTransaction(depositAmount, "депозит");
+    std::ofstream file(filename, std::ios::app);  // Открываем файл для записи
+    if (file.is_open()) {
+        file << data;
     }
-}
 
-void WithdrawThread() {
-    for (int i = 0; i < 5; ++i) {
-        int withdrawAmount = rand() % 50 + 1;
-        PerformTransaction(-withdrawAmount, "снятие");
-    }
+    std::cout << std::this_thread::get_id() << " finished writing" << std::endl;
 }
 
 int main() {
-    // Создание мьютекса
-    /* 1 аргумент - атрибуты безопасности мьютекса
-    *  2 аргумент - должен ли мьютекс быть в исходном заблокированном состоянии
-    *  3 аргумент - имя мьютекса (мьютекс не имеет имени в нашем случае(он анонимный))
-    */
-    mutex = CreateMutex(NULL, FALSE, NULL); 
+    // Создаем файл "example.txt" (перезаписываем его, если он существует)
+    std::string filename = "C:/Users/akvar/OneDrive/Рабочий стол/lab3OS/example.txt";
+    std::ofstream init_file(filename);
+    init_file.close();
 
-    std::thread depositThread(DepositThread);
-    std::thread withdrawThread(WithdrawThread);
+    // Создаем два потока, каждый из которых вызовет функцию write_to_file
+    std::thread thread1(write_to_file, filename, "Data from the Thread 1\nqwe\n");
+    std::thread thread2(write_to_file, filename, "Data from the Thread 2\nrty\n");
 
-    depositThread.join();
-    withdrawThread.join();
+    // Ждем, пока оба потока завершат свою работу
+    thread1.join();
+    thread2.join();
 
-    // Закрытие мьютекса
-    CloseHandle(mutex);
+    std::cout << "All threads have shut down" << std::endl;
 
     return 0;
 }

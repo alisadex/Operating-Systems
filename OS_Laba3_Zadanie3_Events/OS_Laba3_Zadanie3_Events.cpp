@@ -1,56 +1,41 @@
-﻿#include <Windows.h>
-#include <iostream>
+﻿#include <iostream>
 #include <thread>
-#include <vector>
 #include <mutex>
+#include <condition_variable>
 
-const int NUM_CARS = 5;
-HANDLE startEvent;
-std::mutex consoleMutex; // мьютекс для синхронизации доступа к консоли из нескольких потоков
+// Создаем два события
+std::condition_variable event_odd, event_even;
+std::mutex mutex;
+bool is_odd_turn = true;
 
-void Racer(int racerID) {
-    {   setlocale(LC_ALL, "rus");
-        /*Создание объекта lock_guard, который автоматически захватывает мьютекс consoleMutex.
-        Это сделано для синхронизации доступа к консоли из разных потоков. */
-        std::lock_guard<std::mutex> lock(consoleMutex);
-        std::cout << "Гонщик #" << racerID << " готов стартовать." << std::endl;
+void odd_thread() {
+    for (int i = 1; i < 10; i += 2) {
+        std::unique_lock<std::mutex> lock(mutex);
+        event_odd.wait(lock, [] { return is_odd_turn; });
+        std::cout << "Odd flow:" << i << std::endl;
+        is_odd_turn = false;
+        event_even.notify_one();
     }
+}
 
-    WaitForSingleObject(startEvent, INFINITE); // Ожидание события начала гонки
-
-    {   
-        std::lock_guard<std::mutex> lock(consoleMutex);  
-    
-        std::cout << "Гонщик #" << racerID << " начал стартовать!" << std::endl;
+void even_thread() {
+    for (int i = 2; i <= 10; i += 2) {
+        std::unique_lock<std::mutex> lock(mutex);
+        event_even.wait(lock, [] { return !is_odd_turn; });
+        std::cout << "Even flow:" << i << std::endl;
+        is_odd_turn = true;
+        event_odd.notify_one();
     }
 }
 
 int main() {
-    // Создание автоматического события начала гонки
-    startEvent = CreateEvent(NULL, TRUE, FALSE, NULL); // Событие устанавливается в несигнализированное (FALSE) состояние.
+    // Создаем потоки
+    std::thread t1(odd_thread);
+    std::thread t2(even_thread);
 
-    // Создание потоков для гонщиков
-    std::vector<std::thread> racers; // Создание вектора для хранения объектов потоков гонщиков.
-    for (int i = 0; i < NUM_CARS; ++i) {
-        racers.emplace_back(Racer, i + 1); // Создает и добавляет новый элемент в конец вектора
-    }
-
-    {   
-        setlocale(LC_ALL, "rus");
-        std::lock_guard<std::mutex> lock(consoleMutex);
-        std::cout << "Внимание! Гонка начинается!" << std::endl;
-    }
-
-    // Сигнализация события начала гонки
-    SetEvent(startEvent);
-
-    // Ожидание завершения всех потоков гонщиков
-    for (auto& racerThread : racers) {
-        racerThread.join();
-    }
-
-    // Закрытие события
-    CloseHandle(startEvent);
+    // Ждем завершения потоков
+    t1.join();
+    t2.join();
 
     return 0;
 }
