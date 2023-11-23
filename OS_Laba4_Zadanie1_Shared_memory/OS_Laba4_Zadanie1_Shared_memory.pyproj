@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>8981ddce-e3c5-423f-8fcd-a1d340011d10</ProjectGuid>
+    <ProjectGuid>df4255c8-45a6-4e32-bf48-957986be4c2b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>OS_Laba4_Zadanie2.1_Shared_memory.py</StartupFile>
+    <StartupFile>OS_Laba4_Zadanie1_Shared_memory.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>OS_Laba4_Zadanie2.1_Shared_memory</Name>
-    <RootNamespace>OS_Laba4_Zadanie2.1_Shared_memory</RootNamespace>
+    <Name>OS_Laba4_Zadanie1_Shared_memory</Name>
+    <RootNamespace>OS_Laba4_Zadanie1_Shared_memory</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="OS_Laba4_Zadanie2.1_Shared_memory.py" />
+    <Compile Include="OS_Laba4_Zadanie1_Shared_memory.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

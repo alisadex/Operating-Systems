@@ -15,3 +15,4 @@ if __name__ == "__main__":
         confirmation_message = client_socket.recv(1024)
         response = confirmation_message.decode('utf-8')
         print("От сервера получено уведомление:", response)
+

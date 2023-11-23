@@ -36,3 +36,4 @@ if __name__ == "__main__":
         # Создаем новый процесс для обработки клиента
         client_process = multiprocessing.Process(target=handle_client, args=(client_socket,))
         client_process.start()
+

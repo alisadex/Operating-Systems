@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>d6874ae2-c8ed-46a3-8e74-b50215f92b17</ProjectGuid>
+    <ProjectGuid>e04c606c-b932-457f-bfaf-15e821f523ca</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>OS_4laba_Zadanie2.2_Client_socket.py</StartupFile>
+    <StartupFile>OS_Laba4_Zadanie2_Server_socket.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>OS_4laba_Zadanie2.2_Client_socket</Name>
-    <RootNamespace>OS_4laba_Zadanie2.2_Client_socket</RootNamespace>
+    <Name>OS_Laba4_Zadanie2_Server_socket</Name>
+    <RootNamespace>OS_Laba4_Zadanie2_Server_socket</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="OS_4laba_Zadanie2.2_Client_socket.py" />
+    <Compile Include="OS_Laba4_Zadanie2_Server_socket.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

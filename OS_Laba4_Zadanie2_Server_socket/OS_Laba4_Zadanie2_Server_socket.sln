@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OS_Laba4_Zadanie2.1_Shared_memory", "OS_Laba4_Zadanie2.1_Shared_memory.pyproj", "{8981DDCE-E3C5-423F-8FCD-A1D340011D10}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OS_Laba4_Zadanie2_Server_socket", "OS_Laba4_Zadanie2_Server_socket.pyproj", "{E04C606C-B932-457F-BFAF-15E821F523CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{8981DDCE-E3C5-423F-8FCD-A1D340011D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8981DDCE-E3C5-423F-8FCD-A1D340011D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E04C606C-B932-457F-BFAF-15E821F523CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E04C606C-B932-457F-BFAF-15E821F523CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9A3E7549-90AE-490C-9EF8-3715DAA0825C}
+		SolutionGuid = {F2AB744C-B9C4-494B-A50F-3B5F381C2F1D}
 	EndGlobalSection
 EndGlobal

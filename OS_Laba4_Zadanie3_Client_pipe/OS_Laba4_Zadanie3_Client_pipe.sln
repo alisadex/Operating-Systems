@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OS_4laba_Zadanie3.2_Client_pipe", "OS_4laba_Zadanie3.2_Client_pipe.pyproj", "{AC970404-9D29-406A-BC64-CB59A7AB3FC0}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "OS_Laba4_Zadanie3_Client_pipe", "OS_Laba4_Zadanie3_Client_pipe.pyproj", "{1E008A93-B9D3-4998-92CF-8E49F4FAE717}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +11,13 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{AC970404-9D29-406A-BC64-CB59A7AB3FC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC970404-9D29-406A-BC64-CB59A7AB3FC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E008A93-B9D3-4998-92CF-8E49F4FAE717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E008A93-B9D3-4998-92CF-8E49F4FAE717}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {355BEBFD-417C-4DF5-BC49-B70CF004CF90}
+		SolutionGuid = {499D2430-09E9-4895-951C-D58900839DFB}
 	EndGlobalSection
 EndGlobal

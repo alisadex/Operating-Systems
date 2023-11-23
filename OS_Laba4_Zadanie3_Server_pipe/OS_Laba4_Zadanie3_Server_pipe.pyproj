@@ -2,15 +2,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>626987e3-8451-4401-93a4-ec5170d1fa4c</ProjectGuid>
+    <ProjectGuid>158125b9-34bb-4d79-a9f6-245cccc43eae</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>OS_4laba_Zadanie3.1_Server_pipe.py</StartupFile>
+    <StartupFile>OS_Laba4_Zadanie3_Server_pipe.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
-    <Name>OS_4laba_Zadanie3.1_Server_pipe</Name>
-    <RootNamespace>OS_4laba_Zadanie3.1_Server_pipe</RootNamespace>
+    <Name>OS_Laba4_Zadanie3_Server_pipe</Name>
+    <RootNamespace>OS_Laba4_Zadanie3_Server_pipe</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="OS_4laba_Zadanie3.1_Server_pipe.py" />
+    <Compile Include="OS_Laba4_Zadanie3_Server_pipe.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
